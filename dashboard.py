@@ -6,13 +6,15 @@ from data_importing import load_session, get_team_order, get_team_color, drs_to_
 import plotting as fsp
 import time
 
+from webscrape import get_f1_drivers
+
 # Default wide mode
 st.set_page_config(layout="wide")
 
 st.header("🏎️ Formula Stats - Dashboard")
 
 # Create tabs
-tab1, tab2 = st.tabs(["Graphics", "Schedule"])
+tab1, tab2, tab3, tab4 = st.tabs(["Graphics", "Schedule", "Drivers", "Records"])
 
 # Get the current year
 today = datetime.today().year
@@ -160,3 +162,23 @@ else:
         df_schedule["Format"] = df_schedule["Format"].apply(lambda x: "Sprint" if x == "sprint_qualifying" else "Conventional")
         st.subheader(f"Event Schedule for the {today} season")
         st.dataframe(df_schedule, hide_index=True)
+    
+    
+    with tab3:
+        st.subheader("Formula 1 Driver Statistics")
+        df_f1_drivers = get_f1_drivers()
+        selected_drivers = st.radio("Select Drivers:", ["Current Drivers", "All Drivers"])
+        if selected_drivers == "All Drivers":
+            st.dataframe(df_f1_drivers, use_container_width=True, hide_index=True)
+        else:
+            all_drivers_data = []
+
+            for name in ff1.plotting.list_driver_names(session):
+                df_temp = df_f1_drivers[df_f1_drivers["Driver name"] == name]
+                all_drivers_data.append(df_temp)
+
+            df_current_drivers = pd.concat(all_drivers_data, ignore_index=True)
+            st.dataframe(df_current_drivers, use_container_width=True, hide_index=True)
+
+    with tab4:
+        pass

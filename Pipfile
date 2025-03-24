@@ -10,6 +10,9 @@ matplotlib = "*"
 numpy = "*"
 fastf1 = "*"
 seaborn = "*"
+requests = "*"
+beautifulsoup4 = "*"
+regex = "*"
 
 [dev-packages]
 ipykernel = "*"

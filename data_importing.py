@@ -4,8 +4,13 @@ from fastf1 import utils
 import pandas as pd
 from typing import Tuple, Dict, List
 from fastf1.core import Session
+# import os
 
-ff1.Cache.enable_cache('/Users/bartosz/Data Projects/f1_analysis/Data/Detailed_Positional_Data_(2018-current)')
+# cache_dir = '/Users/bartosz/Data Projects/f1_analysis/Data/Detailed_Positional_Data_(2018-current)'
+# if not os.path.exists(cache_dir):
+#     os.makedirs('/Users/bartosz/Data Projects/f1_analysis/Data/Detailed_Positional_Data_(2018-current)')
+
+# ff1.Cache.enable_cache(cache_dir)
 
 def load_session(year: int, event: str, session_type:str) -> Tuple[Session, pd.DataFrame, pd.DataFrame]:
     schedule = ff1.get_event_schedule(year, include_testing=False)
