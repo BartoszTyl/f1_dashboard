@@ -329,7 +329,7 @@ def plot_telemetry_comparison(session, driver_1: str, driver_2: str, lap_driver_
 
 
     fig.suptitle(f"{session.event.year} {session.event.EventName} - {session.name}", fontsize=16, color='white', y=0.93)
-    fig.text(0.5, 0.89, f"Lap telemetry | {driver_1} ({format_lap_time(session.laps.pick_driver(driver_1).pick_lap(lap_driver_1)['LapTime'].iloc[0])}) vs {driver_2} ({format_lap_time(session.laps.pick_driver(driver_1).pick_lap(lap_driver_2)['LapTime'].iloc[0])})", ha='center', fontsize=10)
+    fig.text(0.5, 0.89, f"Lap telemetry | {driver_1} ({format_lap_time(session.laps.pick_driver(driver_1).pick_lap(lap_driver_1)['LapTime'].iloc[0])}) vs {driver_2} ({format_lap_time(session.laps.pick_driver(driver_2).pick_lap(lap_driver_2)['LapTime'].iloc[0])})", ha='center', fontsize=10)
 
     
     return fig
